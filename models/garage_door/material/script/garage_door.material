@@ -1,0 +1,13 @@
+material Custom/garage_door_metal
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture Clementine_-_Clementine_Dark-Brushed-Metal-metal-texture.jpg
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="Sofa">
+    <link name="link">
+      <pose>0 0 0 0 0 1.57079632679</pose>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Sofa/meshes/Sofa.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.1 0.455 0.623</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Sofa/meshes/Sofa.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+    </link>
+    <static>1</static>
+  </model>
+</sdf>

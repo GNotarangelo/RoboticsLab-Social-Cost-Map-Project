@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<robot  xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find social_cost_map)/urdf/fra2mo/utility_macro.xacro" />
+
+  <!-- WHOLE BASE MACRO-->
+  <xacro:macro name="fra2mo_base" > <!--fb : front, back ; lr: left, right -->
+
+    <!-- Base properties -->
+    <xacro:property name="base_height" value="0.180" /> 
+    <xacro:property name="base_radius" value="0.11" /> 
+    <xacro:property name="base_mass" value="5" />
+    <xacro:property name="wheel_mass" value="2.5" />
+    <xacro:property name="wheel_radius" value="0.035" /> 
+    <xacro:property name="wheel_axle" value="0.13" /> 
+   
+    <!-- Actual body/chassis of the robot -->
+    <link name="base_footprint">
+    </link>
+
+    <link name="base_link">
+      <!-- Inertial properties -->
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="${base_mass}" />
+        <xacro:cylinder_inertia m="${base_mass}" r="${base_radius}" h="${base_height}" />
+      </inertial>
+      <!-- Visual representation -->
+      <visual> 
+        <geometry>
+          <mesh filename="file://$(find social_cost_map)/meshes/fra2mo/rl_fra2mo_body.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="Blue" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </visual>
+      <!-- Collision properties -->
+      <collision>
+        <geometry>
+          <cylinder length="${base_height}" radius="${base_radius}" />
+        </geometry>
+        <origin xyz="0 0.0 ${(base_height/2.0)-0.05}" rpy="0 0 0" />
+      </collision> 
+      <collision>
+        <geometry>
+          <sphere radius="0.019" />
+        </geometry>
+        <origin xyz="-0.0825 0.0 -0.04" rpy="0 0 0" />
+      </collision>       
+    </link>
+
+    <link name="aruco_marker_link">
+      <visual>
+        <geometry>
+          <box size="0.2 0.2 0.01"/> </geometry>
+        <material name="White" />
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.2 0.2 0.01"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.05" />
+        <origin xyz="0 0 0" />
+        <xacro:cylinder_inertia m="0.01" r="0.02" h="0.01" />
+      </inertial>
+    </link>
+
+    <gazebo reference="aruco_marker_link">
+      <visual>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.4 0.4 0.4 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>model://aruco_marker1/materials/textures/marker_1-1.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+    </gazebo>
+
+    <!-- Left Wheel -->
+    <link name="left_wheel_link">
+      <visual> 
+        <geometry>
+          <mesh filename="file://$(find social_cost_map)/meshes/fra2mo/rl_fra2mo_wheel.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="Black" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </visual>
+      <collision> 
+        <geometry>
+          <mesh filename="file://$(find social_cost_map)/meshes/fra2mo/rl_fra2mo_wheel.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="${wheel_mass}" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+      </inertial>
+    </link>
+
+    <!-- Right Wheel -->
+    <link name="right_wheel_link">
+      <visual> 
+        <geometry>
+          <mesh filename="file://$(find social_cost_map)/meshes/fra2mo/rl_fra2mo_wheel.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="Black"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </visual>
+      <collision> 
+        <geometry>
+          <mesh filename="file://$(find social_cost_map)/meshes/fra2mo/rl_fra2mo_wheel.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="${wheel_mass}" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+      </inertial>
+    </link>
+
+    <!-- Additional Links -->
+    <link name="d435_link">
+    </link>
+    <link name="lidar_link" />
+
+    <!-- Joints -->
+    <joint name="base_footprint_joint" type="fixed">
+      <parent link="base_footprint" />
+      <child link="base_link" />
+      <origin xyz="0.0 0.0 0.059" rpy="0 0 0" />
+    </joint>
+    <joint name="aruco_marker_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="aruco_marker_link"/>
+      <origin xyz="0.0 0.0 0.18" rpy="0 0 0"/> 
+    </joint>
+    <joint name="left_wheel_joint" type="continuous">
+      <parent link="base_link" />
+      <child link="left_wheel_link" />
+      <origin xyz="0.04025 0.062 -0.024" rpy="0 0 0" />
+      <axis xyz="0 1 0" />
+      <limit effort="100" velocity="100" />
+      <dynamics damping="0.5" friction="0.01" />
+    </joint>
+    <joint name="right_wheel_joint" type="continuous">
+      <parent link="base_link" />
+      <child link="right_wheel_link" />
+      <origin xyz="0.04025 -0.062 -0.024" rpy="0 0 ${-M_PI}" />
+      <axis xyz="0 -1 0" />
+      <limit effort="100" velocity="100" />
+      <dynamics damping="0.5" friction="0.01" />
+    </joint>
+    <joint name="d435_joint" type="fixed">
+      <parent link="base_link" />
+      <child link="d435_link" />
+      <origin xyz="0.090925 0.0 0.06670" rpy="0 0 0" />
+    </joint>
+    <joint name="lidar_joint" type="fixed">
+      <parent link="base_link" />
+      <child link="lidar_link" />
+      <origin xyz="0.0 0.0 0.125" rpy="0 0 0" />
+    </joint>
+
+    <!-- Gazebo Material Assignments 
+    <gazebo reference="base_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
+    <gazebo reference="left_wheel_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+    <gazebo reference="right_wheel_link">
+      <material>Gazebo/Black</material>
+    </gazebo>-->
+
+    <!-- Transmissions -->
+
+    <transmission name="left_wheel_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_wheel_joint" />
+      <actuator name="left_wheel_joint_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+    <transmission name="right_wheel_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_wheel_joint" />
+      <actuator name="right_wheel_joint_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <!-- Plugin for differential drive control in Gazebo--> 
+    <gazebo>
+      <plugin name="ignition::gazebo::systems::DiffDrive" filename="libignition-gazebo-diff-drive-system.so">
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>${wheel_axle}</wheel_separation>
+        <wheel_radius>${wheel_radius}</wheel_radius>
+        <!--<frame_id>base_footprint</frame_id> TO LOOK
+        <ignition_frame_id>base_footprint</ignition_frame_id>-->
+        <!-- SLAM -->
+        <use_sim_time>true</use_sim_time>
+        <odom_topic>/model/fra2mo/odometry</odom_topic>
+        <odom_frame>odom</odom_frame>
+        <child_frame_id>base_footprint</child_frame_id>
+        <publish_odom_tf>true</publish_odom_tf>
+        <odom_publish_frequency>50</odom_publish_frequency>
+        <topic>/fra2mo/cmd_vel</topic>
+      </plugin>
+    </gazebo>
+
+  </xacro:macro>
+</robot>
+

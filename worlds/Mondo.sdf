@@ -1,0 +1,553 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="social_cost_map_world">
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <scene>
+      <ambient>1 1 1 1</ambient>
+      <background>0.3 0.7 0.9 1</background>
+      <shadows>0</shadows>
+      <grid>1</grid>
+    </scene>
+    
+    <light type="directional" name="sun">
+    <cast_shadows>false</cast_shadows>
+
+    <pose>0 0 10 0 0 0</pose>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+    <specular>0.2 0.2 0.2 1</specular>
+
+    <attenuation>
+      <range>1000</range>
+      <constant>0.9</constant>
+      <linear>0.01</linear>
+      <quadratic>0.001</quadratic>
+    </attenuation>
+
+    <direction>-0.5 0.1 -0.9</direction>
+    </light>  
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='Wall_Top1'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 6.5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 6.5 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>1 -0.35 1.5 0 -0 0</pose>
+    </model>
+
+        <model name='Wall_Top2'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 6.5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 6.5 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>1 -6.85 1.5 0 -0 0</pose>
+    </model>
+
+    <model name='Wall_Bottom1'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 6.5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 6.5 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-9 -0.35 1.5 0 -0 0</pose>
+    </model>
+
+        <model name='Wall_Bottom2'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 6.5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 6.5 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-9 -6.85 1.5 0 -0 0</pose>
+    </model>
+
+    <model name='Wall_Left1'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 5.2 3</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 5 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-1.5 3 1.5 0 -0 1.57</pose>
+    </model>
+
+    <model name='Wall_Left2'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 5 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-6.6 3 1.5 0 -0 1.57</pose>
+    </model>
+
+    <model name='Wall_Right1'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 5 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-1.6 -10 1.5 0 -0 -1.57</pose>
+    </model>
+
+    <model name='Wall_Right2'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 5 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-6.6 -10 1.5 0 -0 -1.57</pose>
+    </model>
+
+    <model name='Wall_Garage_1'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 10 3</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 10 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-4 -5 1.5 0 -0 0</pose>
+    </model>
+
+    <model name='Wall_Garage_Left'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 7 3</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo_map>model://materials/bricks.png</albedo_map>
+                <roughness>0.9</roughness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.2 7 3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-4.5 0 1.5 0 -0 -1.57</pose>
+    </model>
+
+    <include>
+      <uri>model://prius_hybrid</uri>
+      <name>Prius</name>
+      <pose>-6 -5 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://garage_door</uri>
+      <name>Garage_Door</name>
+      <pose>-6.5 -9.9 1.5 0 0 1.57</pose>
+    </include>
+
+    <include>
+      <uri>model://Sofa</uri>
+      <name>Sofa</name>
+      <pose>-0.75 -2.5 0 0 0 0</pose>
+      <scale>3 3 3</scale>
+    </include>
+
+    <include>
+      <uri>model://tv_65in_emissive</uri>
+      <name>tv_65in_emissive</name>
+      <pose>0.9 -2.5 1.5 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://landing_sign</uri>
+      <name>landing_sign</name>
+      <pose>0 -6 -0.02 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://CoffeeTable</uri>
+      <name>coffee_table</name>
+      <pose>-0.2 -7.3 0 0 0 0</pose>
+    </include>
+
+    <!-- <include>
+      <uri>model://aruco_marker1</uri>
+      <name>Aruco1Test</name>
+      <pose>-0.75 -6.75 2 3.14 0 0</pose>
+    </include> -->
+
+    <model name='CubeR'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-0.265 -7.215 0.425 0 0 0</pose>
+    </model>
+
+    <model name='CubeG'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-0.38 -7.33 0.425 0 0 0</pose>
+    </model>
+
+    <model name='CubeB'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <pose>-0.15 -7.1 0.425 0 0 0</pose>
+    </model>
+
+    <include>
+      <uri>model://male_visitor</uri>
+      <name>Maratoneta</name>
+    </include>
+    
+    <include>
+      <uri>model://actor - relative paths</uri>
+      <name>Tifoso Accanito</name>
+      <pose>-0.4 -2.6 0 0 0 0</pose>
+    </include>
+
+    <model name="Tifoso_Accanito_Fisico">
+      <pose>-0.4 -2.6 0 0 0 0</pose> <static>false</static> 
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.3</radius>
+              <length>1.8</length>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <include>
+      <uri>model://Standing person</uri>
+      <name>Meccanico</name>
+      <pose>-7.5 -7.1 0 0 0 3.5</pose>
+    </include> 
+
+    <include>
+      <uri>model://VisitorKidSit</uri>
+      <name>Bambino</name>
+      <pose>-0.4 -2.1 0 0 0 1.57</pose>
+    </include>
+
+    <gazebo>
+      <plugin filename="gz-sim-sensors-system"
+        name="gz::sim::systems::Sensors">
+        <render_engine>ogre2</render_engine>
+      </plugin>
+    </gazebo>
+
+  </world>
+</sdf>

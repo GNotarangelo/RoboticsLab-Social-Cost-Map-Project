@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<sdf version='1.4'>
+  <model name='tv_65in_emissive'>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.05 1.827 1.046</size>
+          </box>
+        </geometry>
+        <material>
+          <pbr>
+            <metal>
+              <!--<albedo_map>model://tv_65in_emissive/material/textures/tv_65in_maldives_909x541.jpg</albedo_map> -->
+              <albedo_map>model://tv_65in_emissive/material/textures/Napoli.jpeg</albedo_map>
+              <!--<roughness>0.5</roughness>
+              <metalness>0.8</metalness> -->
+            </metal>
+          </pbr>
+          <ambient>0.9 0.9 0.9 1</ambient>
+          <diffuse>0.9 0.9 0.9 1</diffuse>
+          <specular>0.8 0.8 0.8 1</specular>
+        </material>
+      </visual>
+    </link>
+    <static>1</static>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>social_cost_map</name>
+  <version>0.0.0</version>
+  <description>Social Cost Map implementation for Robotics Lab 2025/26</description>
+  <maintainer email="g2notarangelo@gmail.com">glcntr</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>people_msgs</depend> 
+  <depend>moveit_ros_planning_interface</depend>
+  <depend>moveit_core</depend>
+  <depend>nav2_msgs</depend>
+  <depend>rclcpp_action</depend>  
+  <depend>ros_gz_bridge</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>aruco_opencv</depend>
+
+  <!-- Mutuate da fra2mo -->
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>rclcpp</build_depend>
+  <build_depend>rviz2</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>tf2_ros</build_depend>
+  <build_depend>urdf</build_depend>
+  <build_depend>xacro</build_depend>
+
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>rclcpp</build_export_depend>
+  <build_export_depend>rviz2</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>tf2</build_export_depend>
+  <build_export_depend>tf2_ros</build_export_depend>
+  <build_export_depend>urdf</build_export_depend>
+  <build_export_depend>xacro</build_export_depend>
+
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>tf2</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>robot_localization</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <gazebo_ros gazebo_model_path="${prefix}/.."/>
+  </export>
+
+</package>

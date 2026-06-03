@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.7">
+  <actor name="male_visitor">
+    <skin>
+      <filename>meshes/MaleVisitorWalk.dae</filename>
+      <scale>1.0</scale>
+    </skin>
+    <animation name="walking">
+      <filename>meshes/MaleVisitorWalk.dae</filename>
+      <scale>1.0</scale>
+    </animation>
+    <link name="collision_link">
+      <collision name="collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.3</radius>
+            <length>1.8</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+  </actor>
+</sdf>

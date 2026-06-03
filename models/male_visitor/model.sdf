@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.7">
+  <actor name="male_visitor">
+    <skin>
+      <filename>meshes/MaleVisitorWalk.dae</filename>
+      <scale>1.0</scale>
+    </skin>
+    <animation name="walking">
+      <filename>meshes/MaleVisitorWalk.dae</filename>
+      <scale>1.0</scale>
+    </animation>
+    <script>
+      <loop>true</loop>
+      <delay_start>0.000000</delay_start>
+      <auto_start>true</auto_start>
+      <trajectory id="0" type="walking">
+        <waypoint>
+          <time>0</time>
+          <pose>-8 0.5 0.9 0 0 0</pose>
+        </waypoint>
+        <waypoint>
+          <time>9</time>
+          <pose>-4 0.5 0.9 0 0 0</pose>
+        </waypoint>
+        <waypoint>
+          <time>18</time>
+          <pose>-8 0.5 0.9 0 0 0</pose>
+        </waypoint>
+      </trajectory>
+    </script>
+    <link name="collision_link">
+      <collision name="collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.3</radius>
+            <length>1.8</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+  </actor>
+</sdf>
