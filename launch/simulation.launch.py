@@ -92,7 +92,7 @@ def generate_launch_description():
         }.items()
     )
 
-    position_fra2mo = [-3.0, -6.0, 0.100]
+    position_fra2mo = [-8.0, -6.0, 0.100]
 
     gz_spawn_fra2mo = Node(
         package='ros_gz_sim',
